@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - DA CAPO</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Connexion DA CAPO 🎻</h1>
+        
+        <div class="auth-form">
+            <h2>Connexion / Inscription</h2>
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Mot de passe">
+            <button onclick="login()">Se connecter</button>
+            <button onclick="signup()">S'inscrire</button>
+            <p id="authMessage"></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
