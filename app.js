@@ -62,3 +62,30 @@ function clearData() {
         notesDisplay.textContent = '';
     }
 }
+
+// Récupérer l'utilisateur
+const user = JSON.parse(localStorage.getItem('supabaseUser'));
+
+// Modifier les fonctions de sauvegarde pour utiliser Supabase
+async function saveData() {
+    const { data, error } = await supabase
+        .from('user_data')
+        .upsert({
+            user_id: user.user.id,
+            pieces: piecesList.innerHTML,
+            notes: notesDisplay.textContent
+        });
+}
+
+async function loadData() {
+    const { data, error } = await supabase
+        .from('user_data')
+        .select('*')
+        .eq('user_id', user.user.id)
+        .single();
+
+    if (data) {
+        piecesList.innerHTML = data.pieces || '';
+        notesDisplay.textContent = data.notes || '';
+    }
+}
