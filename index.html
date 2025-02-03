@@ -37,11 +37,12 @@
     </div>
 
     <script src="app.js"></script>
-    <script>
-        // Enregistrement du Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-    </script>
+   <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/VIOLINPRACTICE/sw.js', {
+            scope: '/VIOLINPRACTICE/'
+        });
+    }
+</script>
 </body>
 </html>
