@@ -113,3 +113,25 @@ button.danger {
         font-size: 2rem;
     }
 }
+
+/* Styles pour l'authentification */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#authMessage {
+    color: #e53935;
+    text-align: center;
+    margin-top: 10px;
+}
