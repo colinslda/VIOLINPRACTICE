@@ -9,6 +9,12 @@
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
 </head>
 <body>
+    <!-- Barre de statut d'authentification -->
+    <div id="authStatus" class="auth-status">
+        <span id="userEmail"></span>
+        <button onclick="logout()">Déconnexion</button>
+    </div>
+
     <div class="container">
         <h1>DA CAPO 🎻</h1>
         
@@ -36,13 +42,44 @@
         </div>
     </div>
 
+    <!-- Intégration de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Configuration Supabase
+        const supabaseUrl = 'https://ewduzxamepfuutshqnfb.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV3ZHV6eGFtZXBmdXV0c2hxbmZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1ODI4NzQsImV4cCI6MjA1NDE1ODg3NH0.xTWWs3pkiOV45q39gDN_4Sf-ZBXHMOm_WM3C55ntfbI';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Vérification de l'authentification
+        async function checkAuth() {
+            const { data: { user }, error } = await supabase.auth.getUser();
+            
+            if (!user) {
+                window.location.href = 'auth.html';
+            } else {
+                document.getElementById('userEmail').textContent = user.email;
+            }
+        }
+
+        // Déconnexion
+        async function logout() {
+            const { error } = await supabase.auth.signOut();
+            localStorage.removeItem('supabaseUser');
+            window.location.href = 'auth.html';
+        }
+
+        // Vérifier l'authentification au chargement
+        checkAuth();
+    </script>
+
+    <!-- Votre script principal -->
     <script src="app.js"></script>
-   <script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/VIOLINPRACTICE/sw.js', {
-            scope: '/VIOLINPRACTICE/'
-        });
-    }
-</script>
+
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/VIOLINPRACTICE/sw.js');
+        }
+    </script>
 </body>
 </html>
