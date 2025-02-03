@@ -2,27 +2,45 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎻 Suivi de Violon</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>DA CAPO - Violon</title>
     <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
 </head>
 <body>
-    <h1>🎻 Mon Suivi de Violon</h1>
+    <div class="container">
+        <h1>DA CAPO 🎻</h1>
+        
+        <!-- Section Ajout de Pièces -->
+        <section class="section">
+            <h2>Pièces à Répéter</h2>
+            <form id="pieceForm">
+                <input type="text" id="pieceInput" placeholder="Nom de la pièce" required>
+                <button type="submit">Ajouter</button>
+            </form>
+            <ul id="piecesList"></ul>
+        </section>
 
-    <input type="text" id="pieceInput" placeholder="Ajouter une pièce">
-    <button onclick="addPiece()">Ajouter</button>
+        <!-- Journal de Répétition -->
+        <section class="section">
+            <h2>Journal de Répétition</h2>
+            <textarea id="notesInput" placeholder="Notes de pratique..."></textarea>
+            <button onclick="saveNotes()">Enregistrer Notes</button>
+            <div id="notesDisplay"></div>
+        </section>
 
-    <ul id="pieceList"></ul>
+        <!-- Contrôles -->
+        <div class="controls">
+            <button onclick="clearData()" class="danger">Tout Effacer</button>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
-
-    <!-- Enregistrement du Service Worker -->
+    <script src="app.js"></script>
     <script>
+        // Enregistrement du Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js')
-                .then(() => console.log("Service Worker enregistré !"))
-                .catch(error => console.log("Erreur Service Worker:", error));
+            navigator.serviceWorker.register('sw.js');
         }
     </script>
 </body>
