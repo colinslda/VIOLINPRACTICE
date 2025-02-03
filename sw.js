@@ -1,9 +1,9 @@
 const CACHE_NAME = 'da-capo-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js'
+  '/VIOLINPRACTICE/',
+  '/VIOLINPRACTICE/index.html',
+  '/VIOLINPRACTICE/styles.css',
+  '/VIOLINPRACTICE/app.js'
 ];
 
 self.addEventListener('install', (event) => {
